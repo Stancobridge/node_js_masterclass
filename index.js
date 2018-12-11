@@ -1,6 +1,9 @@
 /**
- * Primary file for the API
+ * NodeJS Master Class #1 Assignment
+ * @author Okechukwu Somtochukwu
+ * @date 11/12/2018
  * 
+ * Simple API Routing System to Route and Display Message in JSON when routed to hello word
  */
 
  //Dependencies
