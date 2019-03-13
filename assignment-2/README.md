@@ -36,7 +36,7 @@ $ POST localhost:5000/users
 ##### Required Fields: 
 as payload => customerName (string), customerEmail (string), password (string), tosAgreement (string), customerAddress (string)
 
-#### Read user 
+#### Get user 
 Required fields => customerEmail (as QueryString) 
 Required headers => `token` header for authentication. 
 ```
@@ -123,7 +123,7 @@ $  DELETE localhost:5000/carts?customeremail=:customeremail
 
 ### Order Routes
 
-#### Make Order
+#### Make an Order
 Required fields => card_number (number), card_exp_month (number), card_exp_year (number), card_cvc (number), customerEmail (number)
 Required headers => `token` header for authentication.
 ```
