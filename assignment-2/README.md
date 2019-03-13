@@ -141,6 +141,6 @@ $  GET localhost:5000/ordder?id=:id
 Required fields => id (as Querystring), customerEmail (string)
 Required headers => `token` header for authentication.
 ```
-$  GET localhost:5000/ordder?id=:id
+$  DDELETE localhost:5000/ordder?id=:id
 ```
 
