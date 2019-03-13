@@ -6,15 +6,7 @@ const helpers = require('./helpers');
 stripe = {};
 
 stripe.createPaymentToken = (paymentDetailsData, callback) => {
-    // Validate payment Details
-    let { card_number, card_exp_month, card_exp_year, card_cvc} = paymentDetailsData;
-    card_number = helpers.validateData(card_number, 'string');
-    card_exp_month = helpers.validateData(card_exp_month, 'string');
-    card_exp_year = helpers.validateData(card_exp_year, 'string');
-    card_cvc = helpers.validateData(card_cvc, 'string');
-
-    if(card_number && card_cvc && card_exp_month && card_exp_year){
-          // Create request Data
+        // Create request Data
         const payload = {
             'card[number]' : card_number,
             'card[exp_month]' : card_exp_month,
@@ -63,9 +55,7 @@ stripe.createPaymentToken = (paymentDetailsData, callback) => {
         req.write(payloadString);
 
         req.end();
-    }else{
-        callback("Invalid or Missing Parameters");
-    }
+    
   
 }
 
