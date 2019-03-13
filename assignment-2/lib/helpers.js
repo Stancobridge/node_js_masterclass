@@ -150,7 +150,6 @@ helpers.validateData = (data, type, length = 0) => {
             data = false;
         }
 
-        if(!data) console.log(`Error validating ${JSON.stringify(initialData)} for type ${type} and length ${length}, check size or type for this data: ${JSON.stringify(initialData)}`);
         return data;
     } else if(type == "number") {
         if(typeof(data) == `${type}`) {
@@ -167,23 +166,21 @@ helpers.validateData = (data, type, length = 0) => {
         } else{
             data = false;
         }
-        if(!data && data !== 0) console.log(`Error validating ${JSON.stringify(initialData)} for type ${type} and length ${length}, check size or type for this data: ${JSON.stringify(initialData)}`);
+
         return data;
     } else if(type == 'object') {
         data = typeof(data) == `${type}` && data != null  ? data : false;
 
-        if(!data) console.log(`Error validating object ${JSON.stringify(initialData)} for not null, check size or type for this data: ${JSON.stringify(initialData)}`);
         return data;
 
     } else if(type == "boolean") {
         data = typeof(data) == `${type}` ? data : false;
-        if(!data) console.log(`Error validating ${JSON.stringify(initialData)} for type ${type}, this data must return true to be valid`);
+        
 
         return data;
     } else if(type == 'array' ){
         data = data instanceof Array  && data.length > 0? data : false;
 
-        if(!data) console.log(`Error validating ${JSON.stringify(initialData)} for type ${type}, this data must be type of array`);
 
         return data;
     } else if(type == "email") {
