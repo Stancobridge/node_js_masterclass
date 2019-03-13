@@ -34,7 +34,7 @@ To use this api with ease, kindly download and install postman [https://www.getp
 $ POST localhost:5000/users
 ```
 ##### Required Fields: 
-as payload => customerName, customerEmail, password, tosAgreement, customerAddress
+as payload => customerName (string), customerEmail (string), password (string), tosAgreement (string), customerAddress (string)
 
 #### Read user 
 Required fields => customerEmail (as QueryString) 
@@ -44,7 +44,7 @@ $  GET localhost:5000/users?id=:email
 ```
 
 #### Update user details 
-Required fields => customerEmail
+Required fields => customerEmail (string)
 Optional => customerName, customerAddress, password (at least one must be specified)
 Required headers => `token` header for authentication. 
 ```
@@ -60,13 +60,13 @@ $  DELETE localhost:5000/users
 
 ### Token Routes
 #### Create A token 
-Required fields => customerEmail and password
+Required fields => customerEmail (string) and password (string)
 ```
 $  POST localhost:5000/token
 ```
 
 #### Extend A token Expiration time 
-Required fields => id, extend
+Required fields => id (string), extend (boolean)
 ```
 $  PUT localhost:5000/token
 ```
@@ -84,7 +84,7 @@ $  DELETE localhost:5000/token?id=:token
 ```
 
 ### Menu (You can only get menu)
-Required fields => customerEmail
+Required fields => customerEmail (string)
 Required headers => `token` header for authentication. 
 ```
 $  GET localhost:5000/menu
@@ -93,7 +93,7 @@ $  GET localhost:5000/menu
 ### Create Routes
 
 #### Add items to cart 
-Required fields =>  menuid (array), customerEmail(string)
+Required fields =>  menuid (array of menu id), customerEmail(string)
 Required headers => `token` header for authentication.
 To increase item quantity send `post` request again with array of items id of the item you want increase their quantity, any new id will be added and quantity of the new id will be one
 ```
@@ -101,21 +101,21 @@ $  POST localhost:5000/carts
 ```
 
 ### Remove a single item from Cart
-Required fields => customerEmail, itemid
+Required fields => customerEmail (string), itemid (array of menu id)
 Required headers => `token` header for authentication. 
 ```
 $  PUT localhost:5000/carts
 ```
 
 ### Get Cart Items
-Required fields => customeremail
+Required fields => customeremail (string)
 Required headers => `token` header for authentication. 
 ```
 $  GET localhost:5000/carts?customeremail=:customeremail
 ```
 
 ### Delete Cart Items
-Required fields => customeremail
+Required fields => customeremail (string)
 Required headers => `token` header for authentication. 
 ```
 $  DELETE localhost:5000/carts?customeremail=:customeremail
@@ -124,21 +124,21 @@ $  DELETE localhost:5000/carts?customeremail=:customeremail
 ### Order Routes
 
 #### Make Order
-Required fields => card_number, card_exp_month, card_exp_year, card_cvc, token, customerEmail
+Required fields => card_number (number), card_exp_month (number), card_exp_year (number), card_cvc (number), customerEmail (number)
 Required headers => `token` header for authentication.
 ```
 $  POST localhost:5000/order
 ```
 
 #### Get ordeer
-Required fields => id (as Querystring), customerEmail
+Required fields => id (as Querystring), customerEmail (string)
 Required headers => `token` header for authentication.
 ```
 $  GET localhost:5000/ordder?id=:id
 ```
 
 #### Delete orders 
-Required fields => id (as Querystring), customerEmail
+Required fields => id (as Querystring), customerEmail (string)
 Required headers => `token` header for authentication.
 ```
 $  GET localhost:5000/ordder?id=:id
