@@ -132,7 +132,7 @@ const order = require('./order');
 
     //User - Put
     // Required data : customerEmail
-    // Optional data: firstname, lastName, password (at least one must be specified)
+    // Optional data: customerName, customerAddress, password (at least one must be specified)
     handlers._user.put = (data, callback) => {
 
         // Check for the optional fields
@@ -515,7 +515,7 @@ const order = require('./order');
                     // Loop through to get all 
                     menuId.forEach(id => {
                         item = menu.find(id);
-                        if(item !== undefined) {
+                        if(item) {
                             items.push(item);
                         } else{
                             console.log(`Error: menuId ${id} does not exist in menu, hence jumping it`);
@@ -681,10 +681,10 @@ const order = require('./order');
     handlers._order.post = (data, callback) => {
         // Validate data 
         let{payload : {card_number, card_exp_month, card_exp_year, card_cvc, customerEmail}, headers : {token}} = data; 
-        card_number = helpers.validateData(card_number, 'string') && card_number.trim().length > 0 ? helpers.validateData(card_number, 'string') : false;
-        card_exp_month = helpers.validateData(card_exp_month, 'string') && card_number.trim().length > 0 ? helpers.validateData(card_exp_month, 'string') : false;
-        card_exp_year = helpers.validateData(card_exp_year, 'string') && card_number.trim().length > 0 ? helpers.validateData(card_exp_year, 'string') : false;
-        card_cvc = helpers.validateData(card_cvc, 'string') && card_number.trim().length > 0 ? helpers.validateData(card_cvc, 'string') : false;
+        card_number = helpers.validateData(card_number, 'number');
+        card_exp_month = helpers.validateData(card_exp_month, 'number');
+        card_exp_year = helpers.validateData(card_exp_year, 'number');
+        card_cvc = helpers.validateData(card_cvc, 'number');
         customerEmail = helpers.validateData(customerEmail, 'email');
 
         token = helpers.validateData(token, 'string', 20);
