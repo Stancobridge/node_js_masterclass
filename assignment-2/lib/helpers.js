@@ -63,60 +63,7 @@ helpers.createRandomString = (strLength) => {
         return false;
     }
 }
- 
-helpers.sendTwilioSms = (phone,msg, callback) => {
-    // Validate phone number and message
-    phone = typeof(phone) == "string"  && phone.trim().length == 10 ? phone.trim() : false;
-    msg = typeof(msg) == "string"  && msg.trim().length > 0 && msg.trim().length < 1600 ? msg.trim() : false; 
-    if(phone && msg) {
-        // Configure the twilio request payload
-        let payload = {
-            "From" : config.twilio.fromPhone,
-            "To" : "+234" + phone,
-            "Body" : msg
-        };
-        // Stringify the payload
-        let payloadString = queryString.stringify(payload);
 
-        // Configure the request details
-        let requestDetails = {
-            'protocol' : 'https:',
-            'hostname' : 'api.twilio.com',
-            'method' : 'POST',
-            'path' : "2010-04-01/Accounts/"+config.twilio.accountSid+"Message.json",
-            'auth' : config.twilio.accountSid+":"+config.twilio.authToken,
-            'headers' : {
-                'Content-Type' : 'application/x-www-form-urlencoded',
-                'Content-Length' : Buffer.byteLength(payloadString)
-            }
-        }
-
-        let req = https.request(requestDetails, (res) =>{
-            // Grab the status code from the resqust
-            let status = res.statusCode;
-
-            // Callback successfully if request went through
-            if(status == 200 || status || 201) {
-                callback(false);
-            } else{
-                callback("Status code returned was "+ status);
-            }
-        });
-
-        // Bind to the Error Event so it doesn't get thrown
-        req.on('error', (e) => {
-            callback(e);
-        });
-
-        // Add the payload 
-        req.write(payloadString);
-
-        req.end();
-
-    } else{
-        callback("Invalid or Missing Parameters");
-    }
-};
 
 // Trim for both string and numbers
 helpers.trim = (data) => {
