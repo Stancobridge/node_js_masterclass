@@ -6,6 +6,8 @@ const helpers = require('./helpers');
 stripe = {};
 
 stripe.createPaymentToken = (paymentDetailsData, callback) => {
+
+    let { card_number, card_exp_month, card_exp_year, card_cvc} = paymentDetailsData;
         // Create request Data
         const payload = {
             'card[number]' : card_number,
